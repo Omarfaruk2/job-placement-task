@@ -1,11 +1,11 @@
 import React from 'react'
+import Banner from './Banner'
 import "./Home.css"
-import Navber from './Navber'
 
 const Home = () => {
     return (
         <div>
-            <Navber />
+            <Banner />
         </div>
     )
 }

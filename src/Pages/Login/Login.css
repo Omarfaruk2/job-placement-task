@@ -1,0 +1,43 @@
+.loginform input {
+    display: block;
+    margin: 00px auto;
+    width: 50%;
+    /* margin: 10px 00px; */
+    margin-top: 30px;
+}
+
+.loginform {
+    /* height: 50vh; */
+}
+
+.green-part {
+    background-color: #0fb;
+
+    /* height: 100%; */
+}
+
+.icon {
+    font-size: 70px;
+    color: black;
+}
+
+.img-bg {
+    /* background-color: ; */
+}
+
+.green-div {
+    height: 100vh;
+}
+
+.border-part {
+    border: none;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 5px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.error-text {
+    text-align: end;
+}
+
+.card-height {
+    height: 500px;
+}
