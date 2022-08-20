@@ -1,15 +1,10 @@
-.navbarName a {
-    margin-right: 15px;
-    letter-spacing: normal;
-    color: #0fb;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
-
+.footerContainer h4,
+.footerContainer p {
+    color: white;
+    border-radius: 15px;
 }
 
-.main-nav {
-    /* Created with https://www.css-gradient.com */
+.footer-main {
     background: #6696C9;
     background: -webkit-linear-gradient(top left, #6696C9, #047A55);
     background: -moz-linear-gradient(top left, #6696C9, #047A55);

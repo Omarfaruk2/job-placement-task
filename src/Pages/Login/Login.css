@@ -6,8 +6,22 @@
     margin-top: 30px;
 }
 
-.loginform {
+.or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.or hr {
+    border-top: 2px solid rgb(5, 209, 155);
+    width: 40%;
+}
+
+.loginform input {
     /* height: 50vh; */
+    padding: 10px;
+    border-radius: 15px;
+    font-weight: bold;
 }
 
 .green-part {
@@ -40,4 +54,28 @@
 
 .card-height {
     height: 500px;
+}
+
+
+@media only screen and (max-width: 576px) {
+    .card-height {
+        margin: auto;
+    }
+
+    .green-part {
+        order: 1;
+    }
+
+    .from-part {
+        order: 0;
+    }
+}
+
+
+
+
+
+
+.under {
+    border-bottom: 1px solid black
 }

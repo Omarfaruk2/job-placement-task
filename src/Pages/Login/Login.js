@@ -2,18 +2,46 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import "./Login.css"
 import Card from 'react-bootstrap/Card'
-import logo from "../../img/logo.png"
 import { SiInformatica } from 'react-icons/si'
 import { Button } from 'react-bootstrap'
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import auth from '../../firebase.init'
+import Lodding from '../Loadding/Lodding'
+import GoogleSing from './GoogleSing'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+
+
 
 function Login() {
 
 
+    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth)
+    const [user2, loading2] = useAuthState(auth)
+
+    const navigate = useNavigate()
+    let location = useLocation()
+
+
+
 
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const onSubmit = (data) => console.log(data)
 
+    const onSubmit = (data) => {
+        console.log(data)
+        signInWithEmailAndPassword(data?.mail, data?.password)
+    }
 
+    if (loading || loading2 || !user) {
+        <Lodding />
+    }
+    if (user || user2) {
+        navigate("/")
+    }
+
+    if (error) {
+        console.log(error, "error")
+    }
+    console.log(user)
 
     return (
         <div className=''>
@@ -34,7 +62,8 @@ function Login() {
                         </Card.Body>
                     </Card>
                 </div>
-                <div className='col-lg-7 p-0'>
+
+                <div className='col-lg-7 p-0 from-part col-sm-12'>
                     <div>
                         <Card className='w-75 mt-5 border-part card-height'>
                             <Card.Body>
@@ -50,11 +79,19 @@ function Login() {
 
                                     {/* <input type="submit" /> */}
                                     <p className='text-center'>
-                                        <Button type='submit' className='btn btn-danger mx-auto text-center'><span>Button</span></Button>
+                                        <Button type='submit' className='btn btn-success mx-auto text-center'><span>Log in</span></Button>
                                     </p>
                                 </form>
+
+                                <span>Are you new to come ? <Link className='text-decoration-none text-danger' to="/signup "><span className='under'>REGISTER</span></Link>
+                                </span>
+
+
+                                <GoogleSing className="mx-auto" />
                             </Card.Body>
+
                         </Card>
+
 
                     </div>
                 </div>

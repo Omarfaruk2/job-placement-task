@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Sineup.css"
 
 import { useForm } from "react-hook-form"
@@ -7,20 +7,47 @@ import Card from 'react-bootstrap/Card'
 import logo from "../../img/logo.png"
 import { SiInformatica } from 'react-icons/si'
 import { Button } from 'react-bootstrap'
-
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
+import auth from "../../firebase.init"
+import Lodding from '../Loadding/Lodding'
+import GoogleSing from './GoogleSing'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Sineup() {
-
-
-
-
+    const navigate = useNavigate()
+    const [displayName, setDisplayName] = useState('')
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth)
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth)
 
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = async data => {
 
+        await createUserWithEmailAndPassword(data?.mail, data?.password)
+        await updateProfile({ displayName })
+        alert('Updated profile')
+
+
+
+
+    }
+    if (user) {
+        navigate("/")
+    }
+    if (updateError) {
+        console.log("hello", updateError)
+    }
+
+    if (loading || updating) {
+        return <Lodding />
+    }
+
+
+    if (error) {
+        console.log(error)
+    }
+    console.log(user)
 
     return (
-
 
         <div>
             <div className=''>
@@ -49,6 +76,12 @@ function Sineup() {
                                     <form className='loginform' onSubmit={handleSubmit(onSubmit)}>
 
 
+                                        <input
+                                            // type="displayName"
+                                            value={displayName}
+                                            onChange={(e) => setDisplayName(e.target.value)} placeholder='type your name' />
+                                        <p className='error-text'>{errors.name?.message}</p>
+
                                         <input placeholder='type your email' {...register("mail", { required: "Email Address is required" })} />
                                         <p className='error-text'>{errors.mail?.message}</p>
 
@@ -57,9 +90,20 @@ function Sineup() {
 
                                         {/* <input type="submit" /> */}
                                         <p className='text-center'>
-                                            <Button type='submit' className='btn btn-danger mx-auto text-center'><span>Button</span></Button>
+                                            <Button type='submit' className='btn btn-danger mx-auto text-center'><span>Sign UP</span></Button>
                                         </p>
+
                                     </form>
+
+                                    {/* <div className='or '>
+                                        <hr />
+                                        <span className='mx-2 fw-bold'>Or</span>
+                                        <hr />
+                                    </div> */}
+                                    <span>Already Have an account ? <Link className='text-decoration-none text-danger' to="/login "><span className='under'>Login</span></Link>
+                                    </span>
+
+                                    <GoogleSing />
                                 </Card.Body>
                             </Card>
 

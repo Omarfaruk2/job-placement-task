@@ -1,0 +1,14 @@
+.help-icon {
+    font-size: 40px;
+    /* color: blue; */
+}
+
+.help-card div div {
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.help-card div div:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}

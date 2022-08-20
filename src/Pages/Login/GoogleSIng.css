@@ -1,0 +1,10 @@
+.or {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.or hr {
+    border-top: 2px solid blue;
+    width: 33%;
+}

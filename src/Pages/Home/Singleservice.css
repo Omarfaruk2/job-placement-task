@@ -1,0 +1,10 @@
+.course-card {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.course-card:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    /* width: 50%; */
+}
